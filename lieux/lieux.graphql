@@ -1,6 +1,13 @@
 type Query {
   geocode(req: String!): Location                        
-  geocode_arr_dep(start: String!, end: String!): Trip      
+  geocode_arr_dep(start: String!, end: String!): Trip  
+  get_parks: [Location]   
+  get_nearest_park(
+    start_lat: Float!
+    start_lon: Float!
+    end_lat: Float!
+    end_lon: Float!
+  ): NearestParkResult 
 }
 
 type Location {
@@ -12,4 +19,9 @@ type Location {
 type Trip {
   start: Location                                        
   end: Location                                           
+}
+
+type NearestParkResult {
+    location: Location
+    total_distance_km: Float
 }
