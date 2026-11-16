@@ -37,9 +37,9 @@ def init_parks():
         for park in records:
 
             document = {
-                "nom": park.get("nom_complet"),
-                "latitude": park.get("latitude"),
-                "longitude": park.get("longitude"),
+                "label": park.get("nom_complet"),
+                "lat": park.get("latitude"),
+                "lon": park.get("longitude"),
             }
 
             parks_collection.insert_one(document)
