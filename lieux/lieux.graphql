@@ -1,0 +1,15 @@
+type Query {
+  geocode(req: String!): Location                        
+  geocode_arr_dep(start: String!, end: String!): Trip      
+}
+
+type Location {
+  label: String                                       
+  lat: Float!                                         
+  lon: Float!                                        
+}
+
+type Trip {
+  start: Location                                        
+  end: Location                                           
+}
