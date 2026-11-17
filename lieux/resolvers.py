@@ -1,4 +1,4 @@
-# RESOLVERS GRAPHQL DU SERVICE LIEUX
+# RESOLVERS GRAPHQL DU SERVICE 2 
 
 # Imports
 from geocoding import geocode, geocode_arr_dep

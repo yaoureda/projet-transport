@@ -1,6 +1,10 @@
+# FONCTIONS UTILES DU SERVICE 2
 
+
+# Imports
 from math import radians, sin, cos, asin, sqrt    
 from database import parks_collection
+
 
 # Calcul la distance entre deux points de coordonnées
 def distance(lat1, lon1, lat2, lon2):
