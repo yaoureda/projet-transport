@@ -31,7 +31,7 @@ services:
         condition: service_healthy
 
   lieux:
-    build: ./Service2_Lieux
+    build: ./service2-lieux
     ports:
       - "3002:3002"
     environment:
