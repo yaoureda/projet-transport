@@ -1,8 +1,7 @@
 # Imports
 from flask import Flask, request, jsonify
-import requests
 from database import parks_collection, init_parks
-from ariadne import graphql_sync, make_executable_schema, load_schema_from_path, QueryType
+from ariadne import graphql_sync, make_executable_schema, load_schema_from_path, QueryType, ObjectType
 import resolvers as r       
 
 
@@ -20,9 +19,10 @@ query = QueryType()
 query.set_field("geocode", r.resolve_geocode)                     
 query.set_field("geocode_arr_dep", r.resolve_geocode_arr_dep)   
 query.set_field("get_parks", r.get_parks)   
-query.set_field("get_nearest_park", r.get_nearest_park)  
-schema = make_executable_schema(type_defs, query)                 
-
+query.set_field("get_nearest_park", r.get_nearest_park)    
+trip = ObjectType("Trip")
+trip.set_field("nearest_park", r.resolve_trip_nearest_park) 
+schema = make_executable_schema(type_defs, query, trip)              
 
 
 # Point d'entrée requêtes GraphQL

@@ -18,7 +18,8 @@ type Location {
 
 type Trip {
   start: Location                                        
-  end: Location                                           
+  end: Location   
+  nearest_park: NearestParkResult                                        
 }
 
 type NearestParkResult {
