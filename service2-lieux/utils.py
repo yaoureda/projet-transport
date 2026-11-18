@@ -3,7 +3,6 @@
 
 # Imports
 from math import radians, sin, cos, asin, sqrt    
-from database import parks_collection
 
 
 # Calcul la distance entre deux points de coordonnées
@@ -22,16 +21,16 @@ def distance(lat1, lon1, lat2, lon2):
     return 2 * R * asin(sqrt(a)) 
 
 
-# Fonction qui trouve le park le plus proche de deux points quelconques 
-def find_nearest_park(start_lat, start_lon, end_lat, end_lon):
-    parks = parks_collection.find({}, {"_id": 0})
+# Fonction qui trouve le lieu d'intéret le plus proche de deux points quelconques 
+def find_nearest_location(collection, start_lat, start_lon, end_lat, end_lon):
+    lieux = collection.find({}, {"_id": 0})
 
-    nearest_park = None
+    nearest_location = None
     min_distance = float("inf")
 
-    for park in parks:
-        lat = float(park["lat"])
-        lon = float(park["lon"])
+    for lieu in lieux:
+        lat = float(lieu["lat"])
+        lon = float(lieu["lon"])
 
         d1 = distance(start_lat, start_lon, lat, lon)
         d2 = distance(lat, lon, end_lat, end_lon)
@@ -40,12 +39,12 @@ def find_nearest_park(start_lat, start_lon, end_lat, end_lon):
 
         if total_distance < min_distance:
             min_distance = total_distance
-            nearest_park = park
+            nearest_location = lieu
 
-    if nearest_park is None:
+    if nearest_location is None:
         return None
 
     return {
-        "location": nearest_park,
+        "location": nearest_location,
         "total_distance_km": round(min_distance, 2)
     }   

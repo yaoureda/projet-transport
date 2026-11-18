@@ -1,13 +1,19 @@
+enum LocationType {
+  PARK
+  TOILET
+}
+
 type Query {
   geocode(req: String!): Location                        
-  geocode_arr_dep(start: String!, end: String!): Trip  
-  get_parks: [Location]   
-  get_nearest_park(
+  geocode_arr_dep(start: String!, end: String!, type: LocationType): Trip  
+  get_locations(type: LocationType!): [Location]   
+  get_nearest_location(
+    type: LocationType!
     start_lat: Float!
     start_lon: Float!
     end_lat: Float!
     end_lon: Float!
-  ): NearestParkResult 
+  ): NearestLocationResult 
 }
 
 type Location {
@@ -17,12 +23,12 @@ type Location {
 }
 
 type Trip {
-  start: Location                                        
-  end: Location   
-  nearest_park: NearestParkResult                                        
+  start: Location!                                        
+  end: Location!   
+  nearest_location: NearestLocationResult                                        
 }
 
-type NearestParkResult {
+type NearestLocationResult {
     location: Location
     total_distance_km: Float
 }
